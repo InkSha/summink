@@ -6,6 +6,7 @@ import (
 
 	"github.com/InkShaStudio/go-command"
 	"github.com/inksha/sumi/internal/sumi_hash"
+	"github.com/inksha/sumi/internal/sumi_rand"
 	"github.com/inksha/sumi/internal/sumi_template"
 )
 
@@ -19,6 +20,7 @@ func Execute() {
 	sumi.AddSubCommand(
 		sumi_hash.RegisterCommand(),
 		sumi_template.RegisterCommand(),
+		sumi_rand.RegisterCommand(),
 	)
 
 	cmd := command.RegisterCommand(sumi)
