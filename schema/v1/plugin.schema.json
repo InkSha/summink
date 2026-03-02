@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Plugin Schema",
+  "type": "object",
+  "$defs": {
+    "pluginCommandData": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Plugin command name",
+          "example": "myplugin"
+        },
+        "type": {
+          "type": "string",
+          "description": "Plugin command type",
+          "example": "string"
+        },
+        "value": {
+          "type": "string",
+          "description": "Plugin command value",
+          "example": "myplugin-value"
+        }
+      }
+    },
+    "pluginCommandInputs": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/pluginCommandData"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "description": {
+              "type": "string",
+              "description": "Plugin command description",
+              "example": "My plugin command"
+            },
+            "required": {
+              "type": "boolean",
+              "description": "Plugin command required",
+              "example": true
+            }
+          }
+        }
+      ]
+    }
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Plugin name",
+      "example": "sumi-plugin-myplugin"
+    },
+    "version": {
+      "type": "string",
+      "description": "Plugin version",
+      "example": "1.0.0"
+    },
+    "description": {
+      "type": "string",
+      "description": "Plugin description",
+      "example": "My plugin"
+    },
+    "license": {
+      "type": "string",
+      "description": "Plugin license",
+      "example": "MIT"
+    },
+    "repo": {
+      "type": "string",
+      "description": "Plugin repository",
+      "example": "https://github.com/sumi-plugin/myplugin"
+    },
+    "doc": {
+      "type": "string",
+      "description": "Plugin readme",
+      "example": "README.md"
+    },
+    "platforms": {
+      "type": "array",
+      "description": "Plugin supported platforms",
+      "properties": {
+        "os": {
+          "type": "string",
+          "description": "Plugin supported platform os",
+          "example": "linux"
+        },
+        "arch": {
+          "type": "string",
+          "description": "Plugin supported platform arch",
+          "example": "amd64"
+        }
+      }
+    },
+    "tags": {
+      "type": "array",
+      "description": "plugin tags"
+    },
+    "args": {
+      "type": "array",
+      "description": "Plugin command args",
+      "items": {
+        "$ref": "#/$defs/pluginCommandInputs"
+      }
+    },
+    "flags": {
+      "type": "array",
+      "description": "Plugin command flags",
+      "items": {
+        "$ref": "#/$defs/pluginCommandInputs"
+      }
+    }
+  },
+  "required": [
+    "name",
+    "version",
+    "description",
+    "license",
+    "repo",
+    "doc",
+    "platforms",
+    "tags",
+    "args",
+    "flags"
+  ]
+}
